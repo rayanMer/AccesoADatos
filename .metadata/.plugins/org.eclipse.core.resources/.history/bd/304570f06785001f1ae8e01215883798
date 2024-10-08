@@ -1,0 +1,11 @@
+package pruebasXStreamReto2;
+import com.thoughtworks.xstream.XStream;
+
+public class main {
+	public static void main(String[] args) {
+		Coche coche1 = new Coche("Mercedes","c220",170);
+		
+		
+	}
+
+}

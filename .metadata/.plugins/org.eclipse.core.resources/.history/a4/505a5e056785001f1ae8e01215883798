@@ -1,0 +1,23 @@
+package pruebasXStream;
+
+
+public class Coche {
+	private String nombre;
+	private String modelo;
+	private int cv;
+	public Coche(String nombre, String modelo, int cv) {
+		this.nombre=nombre;
+		this.modelo=modelo;
+		this.cv=cv;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public String getModelo() {
+		return modelo;
+	}
+	public int getCv() {
+		return cv;
+	}
+
+}

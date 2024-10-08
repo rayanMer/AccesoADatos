@@ -1,0 +1,20 @@
+package pruebasXStreamReto2;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.security.AnyTypePermission;
+
+public class main {
+	public static void main(String[] args) {
+		Coche coche1 = new Coche("Mercedes","c220",170);
+		//Apartado 1.1
+		XStream xstream = new XStream(new DomDriver());
+		xstream.addPermission(AnyTypePermission.ANY);
+		
+		String xmlCoche=xstream.toXML(coche1); 
+		System.out.println(xmlCoche);
+		
+		Coche cocheRecuperado=(Coche) xstream.fromXML(xmlCoche);
+		System.out.println(cocheRecuperado);
+	}
+
+}

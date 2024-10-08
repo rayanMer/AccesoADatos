@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module AccesoADatos {
+	requires xstream;
+	opens pruebasXStream to xstream;
+	exports pruebasXStream;
+}

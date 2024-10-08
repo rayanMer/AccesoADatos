@@ -1,0 +1,5 @@
+<pruebasXStreamReto2.Coche>
+  <nombre>bmw</nombre>
+  <modelo>m3</modelo>
+  <cv>170</cv>
+</pruebasXStreamReto2.Coche>
