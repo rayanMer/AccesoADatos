@@ -1,0 +1,5 @@
+<apartado1__1.Coche>
+  <nombre>Mercedes</nombre>
+  <modelo>c220</modelo>
+  <cv>170</cv>
+</apartado1__1.Coche>

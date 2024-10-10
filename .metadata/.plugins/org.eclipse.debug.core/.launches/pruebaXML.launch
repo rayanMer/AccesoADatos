@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/AccesoADatos/src/pruebasXStreamReto2/pruebaXML.java"/>
+        <listEntry value="/Reto2/src/apartado1_1/pruebaXML.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
     </listAttribute>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="pruebasXStreamReto2.pruebaXML"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="apartado1_1.pruebaXML"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="AccesoADatos"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="AccesoADatos"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Reto2"/>
 </launchConfiguration>
