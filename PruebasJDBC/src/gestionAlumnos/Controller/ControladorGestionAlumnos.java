@@ -42,7 +42,6 @@ public class ControladorGestionAlumnos implements ActionListener, ListSelectionL
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String actionCommand = event.getActionCommand();
-
 		System.out.println("estoy en actionPerformed con la opcion " + actionCommand);
 		String DNI = view.textFieldDNI.getText();
 		String nombre = view.textFieldNombre.getText();
@@ -52,11 +51,14 @@ public class ControladorGestionAlumnos implements ActionListener, ListSelectionL
 
 		case "Cargar Todos":
 			DefaultListModel<String> modelo = new DefaultListModel<String>();
-
+		    List<String> alumnos = model.getAll();
+		    for (String alumnoCompleto : alumnos) {
+		        modelo.addElement(alumnoCompleto);
+		    }
+		    System.out.println(modelo);
 			view.jListaAlumnos.setModel(modelo);
 			break;
 		case "Crear Nuevo":
-			
 			Alumno alumno = new Alumno();
 			alumno.setDNI(DNI);
 			System.out.println(DNI.length());
@@ -79,7 +81,6 @@ public class ControladorGestionAlumnos implements ActionListener, ListSelectionL
 		case "Eliminar":
 			model.eliminarAlumno(view.textFieldDNI.getText());
 			break;
-
 		}
 
 	}
