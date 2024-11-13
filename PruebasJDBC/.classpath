@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/usr/share/java/mariadb-java-client.jar"/>
+	<classpathentry kind="lib" path="src/reto2UD2/apartado2/LibreriasH2/h2-1.4.197.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

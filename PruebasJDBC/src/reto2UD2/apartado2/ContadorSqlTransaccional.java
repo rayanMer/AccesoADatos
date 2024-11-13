@@ -15,28 +15,30 @@ public class ContadorSqlTransaccional {
 		// con el for update + transacción conseguimos el bloque de fila y atomicidad
 		String sqlConsulta = "select nombre,cuenta from contadores where nombre='contador1' for update;";
 		String sqlActualización = "update contadores set cuenta=? where nombre='contador1';";
+		String crearTabla = "CREATE TABLE if not exists contadores  (nombre VARCHAR(255) PRIMARY KEY, cuenta INT NOT NULL) ;";
 		
-		Class.forName("org.mariadb.jdbc.Driver");
-		
-		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/adat5?allowPublicKeyRetrieval=true", "dam2", "asdf.1234"))
-		{
-			PreparedStatement consulta = connection.prepareStatement(sqlConsulta);
-			PreparedStatement actualización = connection.prepareStatement(sqlActualización);
-			int cuenta = 0;
+
+		String url = "jdbc:h2:./databses/apartado2.db";
+		try (Connection con = DriverManager.getConnection(url, "dam2", "asdf.1234")) {
+			PreparedStatement crearTablaInicial = con.prepareStatement(crearTabla);
+			crearTablaInicial.executeUpdate();
 			
-			for (int i=0; i<1000; i++) {
-				connection.setAutoCommit(false);
+			PreparedStatement consulta = con.prepareStatement(sqlConsulta);
+			PreparedStatement actualización = con.prepareStatement(sqlActualización);
+			int cuenta = 0;
+
+			for (int i = 0; i < 1000; i++) {
+				con.setAutoCommit(false);
 				ResultSet res = consulta.executeQuery();
 				if (res.next()) {
 					cuenta = res.getInt(2);
 					cuenta++;
 					actualización.setInt(1, cuenta);
 					actualización.executeUpdate();
-				}
-				else break;
-				connection.commit();
-				connection.setAutoCommit(false);
+				} else
+					break;
+				con.commit();
+				con.setAutoCommit(false);
 			} // for
 			System.out.println("Valor final: " + cuenta);
 		} catch (Exception e) {
