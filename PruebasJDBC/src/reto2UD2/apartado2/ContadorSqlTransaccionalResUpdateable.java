@@ -15,12 +15,11 @@ public class ContadorSqlTransaccionalResUpdateable {
 		// con el for update + transacción conseguimos el bloque de fila y atomicidad
 		String sqlConsulta = "select nombre,cuenta from contadores where nombre='contador1' for update;";
 		
-		Class.forName("org.mariadb.jdbc.Driver");
 		
 		try (Connection connection = DriverManager.getConnection(
-				"jdbc:mariadb://localhost:3306/contadores?allowPublicKeyRetrieval=true", "contadores", "987654321"))
+				"jdbc:h2:./databses/apartado2.db", "dam2", "asdf.1234"))
 		{
-			PreparedStatement consulta = connection.prepareStatement(sqlConsulta,ResultSet.FETCH_FORWARD,
+			PreparedStatement consulta = connection.prepareStatement(sqlConsulta,ResultSet.TYPE_FORWARD_ONLY,
 																			ResultSet.CONCUR_UPDATABLE);
 			int cuenta = 0;
 			
