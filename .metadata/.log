@@ -3976,3 +3976,6 @@ java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 0
 	at org.eclipse.debug.internal.ui.views.console.ProcessConsole.<init>(ProcessConsole.java:249)
 	at org.eclipse.debug.internal.ui.views.console.ProcessConsoleManager$ConsoleCreation.run(ProcessConsoleManager.java:74)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-11-14 14:17:09.009
+!MESSAGE The workspace will exit with unsaved changes in this session.
