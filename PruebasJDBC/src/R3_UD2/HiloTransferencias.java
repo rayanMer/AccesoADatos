@@ -39,7 +39,7 @@ class HiloTransferencia implements Runnable {
 		numHilo = from;
 		cantidadMáxima = max;
 
-		conexión = DriverManager.getConnection("jdbc:mysql://localhost/adat1?allowPublicKeyRetrieval=true", "dam2",
+		conexión = DriverManager.getConnection("jdbc:mysql://localhost/adat8?allowPublicKeyRetrieval=true", "dam2",
 				"asdf.1234");
 
 		// Prepara las consultas:

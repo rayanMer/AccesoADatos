@@ -19,7 +19,7 @@ public class Banco {
 		this.númeroDeCuentas = numCuentas;
 
 		try {
-			conexión = DriverManager.getConnection("jdbc:mysql://localhost/adat1?allowPublicKeyRetrieval=true", "dam2",
+			conexión = DriverManager.getConnection("jdbc:mysql://localhost/adat8?allowPublicKeyRetrieval=true", "dam2",
 					"asdf.1234");
 
 			// Inicializa la base de datos de cuentas:
@@ -41,11 +41,13 @@ public class Banco {
 			boolean retiraEnDosPasos, boolean transacción, boolean reordena) {
 
 		try {
-			if (transacción) conexiónHilo.setAutoCommit(false);
+			if (transacción)
+				conexiónHilo.setAutoCommit(false);
 			sqlMiraFondos.setInt(1, origen);
 			sqlRetira.setFloat(1, cantidad);
 			sqlRetira.setInt(2, origen);
-			if (!retiraEnDosPasos) sqlRetira.setFloat(3, cantidad);
+			if (!retiraEnDosPasos)
+				sqlRetira.setFloat(3, cantidad);
 			sqlIngresa.setFloat(1, cantidad);
 			sqlIngresa.setInt(2, destino);
 			boolean faltaSaldo = true;
@@ -74,7 +76,8 @@ public class Banco {
 				System.err.printf("No puedo tranferir %d de %d a %d por falta de fondos\n", cantidad, origen, destino);
 			}
 
-			if (transacción) conexiónHilo.commit();
+			if (transacción)
+				conexiónHilo.commit();
 		} catch (SQLException e) {
 			System.err.println("Problema SQL " + e.getMessage());
 			try {
@@ -116,12 +119,11 @@ public class Banco {
 				System.out.println("Balance correcto");
 			}
 		}
-		
+
 		res = sql.executeQuery("SELECT id FROM cuentas WHERE saldo<0");
 		while (res.next()) {
 			System.err.println("DESCUBIERTO en cuenta " + res.getInt(1));
 		}
-		
 
 		/*
 		 * Detallando por cuenta: ResultSet res =
