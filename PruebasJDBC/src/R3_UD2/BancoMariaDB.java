@@ -1,5 +1,6 @@
 package R3_UD2;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,21 +8,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Banco {
+public class BancoMariaDB {
 	private final int saldoInicial;
 	private final int númeroDeCuentas;
 	private boolean abierto;
 	private static Connection conexión;
-	
-	public Banco(int numCuentas, int saldoInicial) {
-		
+
+	public BancoMariaDB(int numCuentas, int saldoInicial) {
+
 		this.abierto = true;
 		this.saldoInicial = saldoInicial;
 		this.númeroDeCuentas = numCuentas;
 
 		try {
-			conexión = DriverManager.getConnection("jdbc:mysql://localhost/adat8?allowPublicKeyRetrieval=true", "dam2",
-					"asdf.1234");
+			conexión = DriverManager.getConnection("jdbc:mariadb://localhost:3306/adat8", "dam2", "asdf.1234");
 
 			// Inicializa la base de datos de cuentas:
 			Statement sql = conexión.createStatement();
@@ -36,43 +36,41 @@ public class Banco {
 			this.abierto = false;
 		}
 	}
-	public static void crearProcedimientoAlmacenado(Connection conexion) {
-		 String procedimientoSQL = 
-			        "CREATE PROCEDURE transfiere_fondos(IN origen INT, IN destino INT, IN cantidad FLOAT) " +
-			        "BEGIN " +
-			        "   DECLARE saldoOrigen FLOAT; " +
-			        "   SELECT saldo INTO saldoOrigen FROM cuentas WHERE id = origen; " +
-			        "   IF saldoOrigen >= cantidad THEN " +
-			        "       UPDATE cuentas SET saldo = saldo - cantidad WHERE id = origen; " +
-			        "       UPDATE cuentas SET saldo = saldo + cantidad WHERE id = destino; " +
-			        "   ELSE " +
-			        "       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fondos insuficientes'; " +
-			        "   END IF; " +
-			        "END";
 
-	    try (Statement stmt = conexion.createStatement()) {
-	        stmt.execute(procedimientoSQL);
-	        System.out.println("Procedimiento almacenado creado con éxito.");
-	    } catch (SQLException e) {
-	        System.err.println("Error creando el procedimiento almacenado: " + e.getMessage());
-	    }
+	public static void crearProcedimientoAlmacenado(Connection conexion) {
+		String procedimientoSQL = "DELIMITER //"
+				+ "CREATE PROCEDURE transfiere_fondos(IN origen INT, IN destino INT, IN cantidad FLOAT) //" + "BEGIN //"
+				+ "   DECLARE saldoOrigen FLOAT; //"
+				+ "   SELECT saldo INTO saldoOrigen FROM cuentas WHERE id = origen; //"
+				+ "   IF saldoOrigen >= cantidad THEN //"
+				+ "       UPDATE cuentas SET saldo = saldo - cantidad WHERE id = origen; //"
+				+ "       UPDATE cuentas SET saldo = saldo + cantidad WHERE id = destino; //" + "   ELSE //"
+				+ "       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fondos insuficientes'; //" + "   END IF; //"
+				+ "END //" + "DELIMITER ;";
+
+		try (Statement stmt = conexion.createStatement()) {
+			stmt.execute(procedimientoSQL);
+			System.out.println("Procedimiento almacenado creado con éxito.");
+		} catch (SQLException e) {
+			System.err.println("Error creando el procedimiento almacenado: " + e.getMessage());
+		}
 	}
 
 	public void transfiere(int origen, int destino, float cantidad, Connection conexion) {
-	    String query = "{call transfiere_fondos(?, ?, ?)}"; 
+		String consulta = "CALL transfiere_fondos(?, ?, ?)"; 
 
-	    try (PreparedStatement stmt = conexion.prepareStatement(query)) {
-	        stmt.setInt(1, origen);
-	        stmt.setInt(2, destino);
-	        stmt.setFloat(3, cantidad);
+		try (CallableStatement stmt = conexion.prepareCall(consulta)) {
+			stmt.setInt(1, origen);
+			stmt.setInt(2, destino);
+			stmt.setFloat(3, cantidad);
 
-	        stmt.execute();
-	        System.out.println("Transferencia realizada con éxito.");
-	    } catch (SQLException e) {
-	        System.err.println("Error ejecutando la transferencia: " + e.getMessage());
-	    }
+			stmt.execute();
+			System.out.println("Transferencia realizada con éxito.");
+
+		} catch (SQLException e) {
+			System.err.println("Error ejecutando la transferencia: " + e.getMessage());
+		}
 	}
-
 
 	public void comprueba() throws SQLException {
 		int saldoTotal = 0;

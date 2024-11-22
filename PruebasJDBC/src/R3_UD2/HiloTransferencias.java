@@ -9,7 +9,7 @@ import java.util.Random;
 class HiloTransferencia implements Runnable {
 	private final static int DIVISOR_CANTIDAD = 50; // para dividir la cantidad inicial para el tope por transferencia
 	private final static int ITERACIONES = 1000;
-	private final Banco banco;
+	private final BancoMariaDB banco;
 	// private final int cuentaOrigen;
 	private int numHilo;
 	private final int cantidadMáxima;
@@ -33,7 +33,7 @@ class HiloTransferencia implements Runnable {
 	// solo tiene sentido en transacciones:
 		static final boolean REORDENA_QUERIES = false;	
 
-	public HiloTransferencia(Banco b, int from, int max) throws SQLException {
+	public HiloTransferencia(BancoMariaDB b, int from, int max) throws SQLException {
 		banco = b;
 		// cuentaOrigen = from;
 		numHilo = from;
@@ -64,8 +64,7 @@ class HiloTransferencia implements Runnable {
 				mensajeSalida = "Saliendo por banco cerrado. Hilo " + numHilo;
 				break;
 			}
-			banco.transfiere(cuentaOrigen, cuentaDestino, cantidad, conexión, sqlMiraFondos, sqlRetira, sqlIngresa,
-					RETIRA_EN_DOS_PASOS, TRANSACCIÓN, REORDENA_QUERIES);
+			banco.transfiere(cuentaOrigen, cuentaDestino, cantidad, conexión);
 		}
 
 		if (mensajeSalida.startsWith("Terminadas"))

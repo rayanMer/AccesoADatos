@@ -10,7 +10,7 @@ public class SimulaBanco {
 	public static final int SALDO_INICIAL = 10000;
 
 	public static void main(String[] args) throws InterruptedException, SQLException {
-		Banco banco = new Banco(NÚMERO_DE_CUENTAS, SALDO_INICIAL);
+		BancoMariaDB banco = new BancoMariaDB(NÚMERO_DE_CUENTAS, SALDO_INICIAL);
 		
 		 // Lanza muchos hilos para realizar transferencias simultáneas:
         Thread[] hilos = new Thread[NÚMERO_DE_HILOS]; 
