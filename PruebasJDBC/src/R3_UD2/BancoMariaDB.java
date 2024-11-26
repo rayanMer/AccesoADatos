@@ -44,7 +44,8 @@ public class BancoMariaDB {
 				+ "   SELECT saldo INTO saldoOrigen FROM cuentas WHERE id = origen; //"
 				+ "   IF saldoOrigen >= cantidad THEN //"
 				+ "       UPDATE cuentas SET saldo = saldo - cantidad WHERE id = origen; //"
-				+ "       UPDATE cuentas SET saldo = saldo + cantidad WHERE id = destino; //" + "   ELSE //"
+				+ "       UPDATE cuentas SET saldo = saldo + cantidad WHERE id = destino; //" +" "
+				+ "ELSE //"
 				+ "       SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fondos insuficientes'; //" + "   END IF; //"
 				+ "END //" + "DELIMITER ;";
 
@@ -65,7 +66,7 @@ public class BancoMariaDB {
 			stmt.setFloat(3, cantidad);
 
 			stmt.execute();
-			System.out.println("Transferencia realizada con éxito.");
+			//System.out.println("Transferencia realizada con éxito.");
 
 		} catch (SQLException e) {
 			System.err.println("Error ejecutando la transferencia: " + e.getMessage());
