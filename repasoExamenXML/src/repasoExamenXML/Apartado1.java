@@ -15,14 +15,14 @@ import com.thoughtworks.xstream.security.TypePermission;
 public class Apartado1 {
 
 	public static void main(String[] args) {
-		Libro libro1 = new Libro("Don quijote", "654654654", 5558);
+		Libro libro1 = new Libro("Don Quijote", "654654654", 5558);
 		Libro libro2 = new Libro("Libro 2", "a888545", 99);
 		//System.out.println(convertirAXml(libro1));
 	//	Libro libroRecuperado=recuperarObjetoXml(convertirAXml(libro2));
 		//System.out.println(libroRecuperado.toString());
-		guardaLibro(libro2);
-		String xmlString=recuperarLibro();
-		System.out.println(xmlString);
+		guardaLibro(libro1);
+		recuperarLibro();
+		
 	}
 	
 	public static String convertirAXml(Libro libro) {
@@ -55,10 +55,11 @@ public class Apartado1 {
 			while((linea=in.readLine()) !=null) {
 				libroXMLString=libroXMLString+linea;
 			}
+			Libro libroRecuperadoFicheorLibro= recuperarObjetoXml(libroXMLString);
+			System.out.println(libroRecuperadoFicheorLibro);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return libroXMLString;

@@ -1,5 +1,5 @@
-<repasoExamenXML.Libro>
-  <nombre>Libro 2</nombre>
+<Libro>
+  <nombreModificado>Libro 2</nombreModificado>
   <isbn>a888545</isbn>
   <numPagina>99</numPagina>
-</repasoExamenXML.Libro>
+</Libro>
