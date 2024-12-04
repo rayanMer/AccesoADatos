@@ -31,6 +31,8 @@ public class Libro {
 	public String toString() {
 		return "Libro [nombre=" + nombre + ", isbn=" + isbn + ", numPagina=" + numPagina + "]";
 	}
-	
+	 public Libro() {
+	        // Constructor sin argumentos
+	    }
 
 }
