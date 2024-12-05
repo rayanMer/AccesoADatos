@@ -10,6 +10,13 @@
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.XStream"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.io.xml.DomDriver"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.security.AnyTypePermission"/>
-    <fullyQualifiedTypeName name="repasoExamenXML.Libro"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="com.thoughtworks.xstream.persistence.PersistenceStrategy"/>
+    <fullyQualifiedTypeName name="com.thoughtworks.xstream.persistence.FilePersistenceStrategy"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.thoughtworks.xstream.persistence.XmlArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="repasoExamenXML.Libro"/>
 </qualifiedTypeNameHistroy>
