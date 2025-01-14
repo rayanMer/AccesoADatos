@@ -4,19 +4,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
+@Table(name = "libro") 															
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_libro") 												
     private int idLibro;
 
+    @Column(name = "titulo")
     private String titulo;
+
+    @Column(name = "genero")
     private String genero;
+
+    @Column(name = "anio_publicacion")
     private int anioPublicacion;
 
     @ManyToOne
-    @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")
+    @JoinColumn(name = "id_autor", referencedColumnName = "id_autor") 										
     private Autor autor;
 
     public Libro() {}
@@ -29,45 +38,20 @@ public class Libro {
         this.autor = autor;
     }
 
-    public int getIdLibro() {
-        return idLibro;
-    }
+    public int getIdLibro() { return idLibro; }
+    public void setIdLibro(int idLibro) { this.idLibro = idLibro; }
 
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
-    }
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getGenero() { return genero; }
+    public void setGenero(String genero) { this.genero = genero; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public int getAnioPublicacion() { return anioPublicacion; }
+    public void setAnioPublicacion(int anioPublicacion) { this.anioPublicacion = anioPublicacion; }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public int getAnioPublicacion() {
-        return anioPublicacion;
-    }
-
-    public void setAnioPublicacion(int anioPublicacion) {
-        this.anioPublicacion = anioPublicacion;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
+    public Autor getAutor() { return autor; }
+    public void setAutor(Autor autor) { this.autor = autor; }
 
     @Override
     public String toString() {
