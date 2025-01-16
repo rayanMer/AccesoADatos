@@ -11,9 +11,9 @@ public class leerBaseDatos {
         //Añadir
         añadir(autor, libro);
         //Modificando la tabla el nombre del autor
-        modificar(autor);
+//        modificar(autor);
         //Listar
-        obtenerLibrosDeAutor(autor);
+//        obtenerLibrosDeAutor(autor);
         
     }
     public static void añadir(Autor autor, Libro libro) {
