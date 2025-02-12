@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.XStream"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.io.xml.DomDriver"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.security.AnyTypePermission"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.persistence.PersistenceStrategy"/>
     <fullyQualifiedTypeName name="com.thoughtworks.xstream.persistence.FilePersistenceStrategy"/>
     <fullyQualifiedTypeName name="java.io.File"/>
@@ -21,4 +20,8 @@
     <fullyQualifiedTypeName name="repasoExamenXML.Libro"/>
     <fullyQualifiedTypeName name="Autor"/>
     <fullyQualifiedTypeName name="Libro"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="Reto1UD6.accessing_data_rest.Pelicula"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
 </qualifiedTypeNameHistroy>
